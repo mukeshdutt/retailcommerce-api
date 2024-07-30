@@ -1,27 +1,19 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { Users } from './common/entity/user.entity';
 import { WinstonModule } from 'nest-winston';
-import { winstonConfig } from './config/winston.config';
+import { winstonConfig } from './common/config/winston.config';
+import { typeOrmConfig } from './common/config/typeorm.config';
+import { Category } from './shared/entities/category.entity';
+import { WebsiteModule } from './website/website.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '@MySQL678',
-      database: 'retailcommerce',
-      entities: [Users],
-      synchronize: true, // Set to false in production
-    }),
-    TypeOrmModule.forFeature([Users]),
+    TypeOrmModule.forRoot(typeOrmConfig),
+    TypeOrmModule.forFeature([Category]),
     WinstonModule.forRoot(winstonConfig),
+    WebsiteModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
