@@ -5,9 +5,9 @@ import { Category } from '../../shared/entities/category.entity';
 
 @Injectable()
 export class CategoryService {
+  
   constructor(
-    @InjectRepository(Category)
-    private readonly categoryRepository: Repository<Category>,
+    @InjectRepository(Category) private readonly categoryRepository: Repository<Category>
   ) {}
 
   async findAll(): Promise<Category[]> {
