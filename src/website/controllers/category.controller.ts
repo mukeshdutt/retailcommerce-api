@@ -10,4 +10,9 @@ export class CategoryController {
   async findAll(): Promise<Category[]> {
     return this.categoryService.findAll();
   }
+
+  @Get(':id')
+  async fundById(id: number): Promise<Category> {
+    return this.categoryService.findById(id);
+  }
 }

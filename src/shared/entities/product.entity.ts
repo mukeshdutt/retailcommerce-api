@@ -1,43 +1,39 @@
-// import {
-//   Entity,
-//   Column,
-//   PrimaryGeneratedColumn,
-//   ManyToOne,
-//   JoinColumn,
-// } from 'typeorm';
-// import { Category } from './category.entity';
-// import { Subcategory } from './subcategory.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Category } from './category.entity';
+import { Subcategory } from './subcategory.entity';
 
-// @Entity()
-// export class Product {
-//   @PrimaryGeneratedColumn()
-//   productId: number;
+@Entity()
+export class Product {
 
-//   @Column()
-//   name: string;
+  @PrimaryGeneratedColumn({ name: 'product_id' })
+  productId: number;
 
-//   @Column()
-//   description: string;
+  @Column()
+  name: string;
 
-//   @Column()
-//   price: number;
+  @Column()
+  description: string;
 
-//   @Column()
-//   imageUrl: string;
+  @Column()
+  price: number;
 
-//   @ManyToOne(() Category, Category => Category.)
-//   @JoinColumn({ name: 'category_id' })
-//   category: Category;
+  @Column({name: 'image_url'})
+  imageUrl: string;
 
-//   @ManyToOne(() => Subcategory)
-//   subcategory: Subcategory;
+  @Column({name: 'stock_quantity'})
+  stockQuantity: number;
 
-//   @Column()
-//   stockQuantity: number;
+  @CreateDateColumn({name: 'created_at'})
+  createdAt: Date;
 
-//   @Column()
-//   createdAt: Date;
+  @UpdateDateColumn({name: 'updated_at'})
+  updatedAt: Date;
 
-//   @Column()
-//   updatedAt: Date;
-// }
+  @ManyToOne(() => Category, (Category) => Category.products)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @ManyToOne(() => Subcategory, (Subcategory) => Subcategory.products)
+  @JoinColumn({ name: 'subcategory_id' })
+  subcategory: Subcategory;
+}

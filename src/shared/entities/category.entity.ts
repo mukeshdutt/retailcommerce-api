@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany} from 'typeorm';
+import { Subcategory } from './subcategory.entity';
+import { Product } from './product.entity';
 
 // Define the entity for the 'categories' table
 @Entity({ name: 'categories' })
@@ -27,4 +29,10 @@ export class Category {
   // Updated at column
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => Subcategory, (subcategory) => subcategory.category)
+  subCategories: Subcategory[];
+
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }

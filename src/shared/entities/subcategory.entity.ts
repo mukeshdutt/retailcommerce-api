@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, UpdateDateColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Category } from './category.entity';
+import { Product } from './product.entity';
 
 @Entity({ name: 'subcategories' })
 export class Subcategory {
@@ -16,13 +17,16 @@ export class Subcategory {
   @Column({ name: 'image_url' })
   imageUrl: string;
 
-  @ManyToOne(() => Category, (category) => category.categoryId)
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
-
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @ManyToOne(() => Category, (category) => category.subCategories)
+  @JoinColumn({ name: 'category_id' })
+  category: Category;
+
+  @OneToMany(() => Product, (product) => product.subcategory) 
+  products: Product[];
 }
