@@ -9,9 +9,7 @@ export class ProductService {
   ) {}
 
   async findAll(): Promise<Product[]> {
-    return this.productRepository.find({
-      relations: ['category', 'subcategory'],
-    });
+    return this.productRepository.find();
   }
 
   async findById(id: number): Promise<Product> {

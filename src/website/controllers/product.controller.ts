@@ -1,13 +1,10 @@
-import { Controller, Get } from "@nestjs/common";
-import { Product } from "src/shared/entities/product.entity";
-import { ProductService } from "../services/product.service";
+import { Controller, Get } from '@nestjs/common';
+import { Product } from 'src/shared/entities/product.entity';
+import { ProductService } from '../services/product.service';
 
-
-@Controller("product")
+@Controller('product')
 export class ProductController {
-  constructor(
-    private readonly productService: ProductService,
-  ) {}
+  constructor(private readonly productService: ProductService) {}
 
   @Get()
   async findAll(): Promise<Product[]> {
@@ -18,5 +15,4 @@ export class ProductController {
   async findById(id: number): Promise<Product> {
     return this.productService.findById(id);
   }
-
 }

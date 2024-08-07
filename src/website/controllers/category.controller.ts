@@ -1,18 +1,19 @@
 import { Controller, Get } from '@nestjs/common';
 import { CategoryService } from '../services/category.service';
 import { Category } from '../../shared/entities/category.entity';
+import { CategoryViewModel } from '../viewmodels/category.viewmodel';
 
 @Controller('category')
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   @Get()
-  async findAll(): Promise<Category[]> {
-    return this.categoryService.findAll();
+  async getAll(): Promise<CategoryViewModel[]> {
+    return this.categoryService.allCategories();
   }
 
-  @Get(':id')
-  async fundById(id: number): Promise<Category> {
-    return this.categoryService.findById(id);
+  @Get('subcategories')
+  async allCategoriesWithSubcategories(): Promise<CategoryViewModel[]> {
+    return this.categoryService.getCategoriesWithSubcategories();
   }
 }

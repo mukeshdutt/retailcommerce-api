@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDa
 import { Category } from './category.entity';
 import { Subcategory } from './subcategory.entity';
 
-@Entity()
+@Entity({name: 'products'})
 export class Product {
 
   @PrimaryGeneratedColumn({ name: 'product_id' })

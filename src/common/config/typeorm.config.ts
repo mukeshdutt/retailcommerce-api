@@ -1,5 +1,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Category } from 'src/shared/entities/category.entity';
+import { Product } from 'src/shared/entities/product.entity';
 import { Subcategory } from 'src/shared/entities/subcategory.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
@@ -9,6 +10,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'root',
   password: '@MySQL678',
   database: 'retailcommerce',
-  entities: [Category, Subcategory],
+  entities: [Category, Subcategory, Product],
   synchronize: true, // Set to false in production
+  logging: ['query', 'error'],
 };

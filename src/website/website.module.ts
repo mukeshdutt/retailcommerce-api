@@ -6,11 +6,14 @@ import { CategoryController } from './controllers/category.controller';
 import { SubcategoryService } from './services/subcategory.service';
 import { SubcategoryController } from './controllers/subcategory.controller';
 import { Subcategory } from 'src/shared/entities/subcategory.entity';
+import { ProductController } from './controllers/product.controller';
+import { ProductService } from './services/product.service';
+import { Product } from 'src/shared/entities/product.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Category, Subcategory])],
-  providers: [CategoryService, SubcategoryService],
-  controllers: [CategoryController, SubcategoryController],
+  imports: [TypeOrmModule.forFeature([Category, Subcategory, Product])],
+  providers: [CategoryService, SubcategoryService, ProductService],
+  controllers: [CategoryController, SubcategoryController, ProductController],
   exports: [TypeOrmModule],
 })
 export class WebsiteModule {}
