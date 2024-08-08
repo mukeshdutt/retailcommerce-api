@@ -9,15 +9,15 @@ export class SubcategoryService {
     private readonly subcategoryRepository: Repository<Subcategory>,
   ) {}
 
-  async findAll(): Promise<Subcategory[]> {
+  async getSubcategories(): Promise<Subcategory[]> {
     return this.subcategoryRepository.find();
   }
   
-  async findById(id: number): Promise<Subcategory> {
+  async getSubcategoryById(id: number): Promise<Subcategory> {
     return this.subcategoryRepository.findOne({ where: { subcategoryId: id } });
   }
   
-  async findByCategoryId(categoryId: number): Promise<Subcategory[]> {
+  async getSubcategoryBySubcategoryId(categoryId: number): Promise<Subcategory[]> {
     return this.subcategoryRepository.find({ where: { category: Equal(categoryId) } });
   }
 }
