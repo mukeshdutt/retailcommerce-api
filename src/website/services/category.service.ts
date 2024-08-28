@@ -27,7 +27,7 @@ export class CategoryService {
       category.categoryId,
       category.name,
       category.description,
-      category.subCategories.map(sub => new SubcategoryViewModel(sub.subcategoryId, sub.name))
+      category.subcategories.map(sub => new SubcategoryViewModel(sub.subcategoryId, sub.name))
     ));
   }
 }

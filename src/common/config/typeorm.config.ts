@@ -8,7 +8,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   host: 'localhost',
   port: 3306,
   username: 'root',
-  password: '@MySQL678',
+  password: '@MySQL567',
   database: 'retailcommerce',
   entities: [Category, Subcategory, Product],
   synchronize: true, // Set to false in production

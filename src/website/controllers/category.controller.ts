@@ -23,6 +23,7 @@ export class CategoryController {
   @Get('subcategories')
   async allCategoriesWithSubcategories(@Res() response: Response): Promise<void> {
     const categories = await this.categoryService.getCategoriesWithSubcategories();
+    // const categories = await this.categoryService.allCategories();
 
     if(categories.length === 0) {
         sendSuccessResponse(response, [], 'No categories found');

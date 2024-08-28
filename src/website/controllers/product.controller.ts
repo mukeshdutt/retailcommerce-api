@@ -3,6 +3,7 @@ import { Controller, Get, Query, Res } from '@nestjs/common';
 import { Product } from 'src/shared/entities/product.entity';
 import { ProductService } from '../services/product.service';
 import { sendSuccessResponse } from 'src/common/utils/response.util';
+import { ProductViewModel } from '../viewmodels/product.viewmodel';
 
 @Controller('product')
 export class ProductController {
@@ -10,7 +11,7 @@ export class ProductController {
 
   // Get all products
   @Get()
-  async getProducts(@Res() response: Response): Promise<void> {
+  async getProducts(@Res() response: Response): Promise<ProductViewModel> {
     const products= await this.productService.getProducts();
 
     if(products.length === 0) {

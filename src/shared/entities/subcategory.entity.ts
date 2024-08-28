@@ -23,7 +23,7 @@ export class Subcategory {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @ManyToOne(() => Category, (category) => category.subCategories)
+  @ManyToOne(() => Category, (category) => category.subcategories)
   @JoinColumn({ name: 'category_id' })
   category: Category;
 
