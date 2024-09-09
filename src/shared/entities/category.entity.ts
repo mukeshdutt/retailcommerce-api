@@ -6,27 +6,30 @@ import { Product } from './product.entity';
 @Entity({ name: 'categories' })
 export class Category {
   
-  // Primary key column
   @PrimaryGeneratedColumn({name:"category_id"})
   categoryId: number;
 
-  // Name column
   @Column()
   name: string;
 
-  // Image URL column
   @Column({ name: 'image_url' })
   imageUrl: string;
 
-  // Description column
   @Column()
   description: string;
 
-  // Created at column
+  @Column({name:"is_active"})
+  isActive: boolean;
+
+  @Column({name:"created_by"})
+  createdBy: string;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
-  // Updated at column
+  @Column({name:"updated_by"})
+  updatedBy: string;
+
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 

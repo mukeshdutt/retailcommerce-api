@@ -7,17 +7,22 @@ import { Category } from './shared/entities/category.entity';
 import { WebsiteModule } from './website/website.module';
 import { DataSource } from 'typeorm';
 import { Subcategory } from './shared/entities/subcategory.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
+    ConfigModule.forRoot({
+      envFilePath: `env/.env.${process.env.NODE_ENV || 'development'}`,
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRoot(typeOrmConfig()),
     TypeOrmModule.forFeature([Category, Subcategory]),
     WinstonModule.forRoot(winstonConfig),
-    WebsiteModule
+    WebsiteModule,
   ],
   controllers: [],
   providers: [],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
-} 
+}

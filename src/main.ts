@@ -5,15 +5,17 @@ import { swaggerConfig } from './common/config/swagger.config';
 import { WinstonModule } from 'nest-winston';
 import { winstonConfig } from './common/config/winston.config';
 import { HttpExceptionsFilter } from './common/filters/http-exceptions.filter';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger(winstonConfig),
   });
 
+  const configService = app.get(ConfigService);
   app.useGlobalFilters(new HttpExceptionsFilter());
   app.enableCors({
-    origin: 'http://example.com', // Replace with your frontend URL
+    origin: configService.get<string>('CORS_ORIGIN'),
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
@@ -21,6 +23,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3000);
+  await app.listen(configService.get<number>('APP_PORT'));
 }
 bootstrap();

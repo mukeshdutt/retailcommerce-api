@@ -17,8 +17,17 @@ export class Subcategory {
   @Column({ name: 'image_url' })
   imageUrl: string;
 
+  @Column({name:"is_active"})
+  isActive: boolean;
+  
+  @Column({name:"created_by"})
+  createdBy: string;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+
+  @Column({name:"updated_by"})
+  updatedBy: string;
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;

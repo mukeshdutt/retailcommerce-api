@@ -32,4 +32,9 @@ export class ProductController {
     }
     sendSuccessResponse(response, products);
   }
+
+  @Get("data")
+  getData() {
+    return "Hello World"; 
+  }
 }
