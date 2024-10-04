@@ -15,13 +15,22 @@ export class Product {
   description: string;
 
   @Column()
-  price: number;
+  specification: string;
 
+  @Column()
+  features: string;
+  
+  @Column({name:"model_number"})
+  modelNumber: string;
+  
   @Column({name: 'image_url'})
   imageUrl: string;
 
   @Column({name: 'stock_quantity'})
   stockQuantity: number;
+
+  @Column()
+  price: number;
 
   @CreateDateColumn({name: 'created_at'})
   createdAt: Date;

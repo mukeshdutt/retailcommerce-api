@@ -14,6 +14,9 @@ export class ProductService {
       product.productId,
       product.name,
       product.description,
+      product.specification,
+      product.features,
+      product.modelNumber,
       product.price,
       product.imageUrl,
       product.category.categoryId,
@@ -24,6 +27,12 @@ export class ProductService {
   async getProductByCategorySubcategory(categoryId: number, subcategoryId: number): Promise<Product[]> {
     return this.productRepository.find({
       where: { category: Equal(categoryId), subcategory: Equal(subcategoryId) },
+    });
+  }
+
+  async getProductById(productId: number): Promise<Product> {
+    return this.productRepository.findOne({
+      where: { productId: Equal(productId) },
     });
   }
 }

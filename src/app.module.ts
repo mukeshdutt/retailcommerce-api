@@ -12,7 +12,8 @@ import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `env/.env.${process.env.NODE_ENV || 'development'}`,
+      // envFilePath: `env/.env.${process.env.NODE_ENV || 'development'}`,
+      envFilePath: `env/.env.production`,
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(typeOrmConfig()),
