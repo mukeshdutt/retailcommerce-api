@@ -1,21 +1,22 @@
-// import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-// import { User } from './user.entity';
-// import { Product } from './product.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from './user.entity';
+import { Product } from './product.entity';
 
-// @Entity()
-// export class Wishlist {
-//     @PrimaryGeneratedColumn()
-//     wishlistId: number;
+@Entity('wishlist')
+export class Wishlist {
 
-//     // @ManyToOne(() => User, user => user.wishlists)
-//     // user: User;
+    @PrimaryGeneratedColumn({name:"wishlist_id"})
+    wishlistId: number;
 
-//     // @ManyToOne(() => Product, product => product.wishlists)
-//     product: Product;
+    @Column({name:"user_id"})
+    userId: number;
 
-//     @Column()
-//     priority: number;
+    @Column({name:"product_id"})
+    productId: number;
 
-//     @Column()
-//     notes: string;
-// }
+    @Column({name:"priority"})
+    priority: number;
+
+    @Column({name:"notes"})
+    notes: string;
+}

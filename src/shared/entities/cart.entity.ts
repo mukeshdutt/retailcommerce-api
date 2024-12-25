@@ -1,27 +1,31 @@
-// import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-// import { User } from './user.entity';
-// import { Product } from './product.entity';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { User } from './user.entity';
+import { Product } from './product.entity';
 
-// @Entity({ name: 'carts' })
-// export class Cart {
-//   @PrimaryGeneratedColumn()
-//   id: number;
+@Entity({ name: 'cart' })
+export class Cart {
+  
+  @PrimaryGeneratedColumn({name: 'cart_id'})
+  cartId: number;
 
-//   @Column({ name: 'cart_id' })
-//   cartId: string;
+  @Column({ name: 'user_id' })
+  userId: number;
 
-//   @ManyToOne(() => User, user => user.userId)
-//   user: User;
+  @Column({ name: 'product_id' })
+  productId: number;
 
-//   @ManyToOne(() => Product, product => product.productId)
-//   product: Product;
+  @Column({ name: 'quantity' })
+  quantity: number;
 
-//   @Column()
-//   quantity: number;
+  @Column({ name: 'added_at' })
+  added_at: Date;
 
-//   @Column({ name: 'date_added' })
-//   dateAdded: Date;
+  @Column({ name: 'updated_at' })
+  updatedAt: Date;
 
-//   @Column({ name: 'is_saved_for_later' })
-//   isSavedForLater: boolean;
-// }
+  @ManyToOne(() => User, (user) => user.userId)
+  user: User;
+
+  @ManyToOne(() => Product, (product) => product.productId)
+  product: Product;
+}

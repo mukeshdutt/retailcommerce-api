@@ -1,41 +1,42 @@
-// import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-// // import { Order } from './order.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+// import { Order } from './order.entity';
 
-// @Entity()
-// export class User {
-//   @PrimaryGeneratedColumn()
-//   userId: number;
+@Entity('users')
+export class User {
 
-//   @Column()
-//   username: string;
+  @PrimaryGeneratedColumn({name:"user_id"})
+  userId: number;
 
-//   @Column()
-//   email: string;
+  @Column({name:"username"})
+  username: string;
 
-//   @Column()
-//   passwordHash: string;
+  @Column({name:"email"})
+  email: string;
 
-//   @Column({ name: 'first_name' })
-//   firstName: string;
+  @Column({name:"password_hash"})
+  passwordHash: string;
 
-//   @Column({ name: 'last_name' })
-//   lastName: string;
+  @Column({ name: 'first_name' })
+  firstName: string;
 
-//   @Column({ name: 'date_of_birth' })
-//   dateOfBirth: Date;
+  @Column({ name: 'last_name' })
+  lastName: string;
 
-//   @Column({ name: 'phone_number' })
-//   phoneNumber: string;
+  @Column({ name: 'date_of_birth' })
+  dateOfBirth: string;
 
-//   @Column({ name: 'is_verified' })
-//   isVerified: boolean;
+  @Column({ name: 'phone_number' })
+  phoneNumber: string;
 
-//   @Column({ name: 'current_status' })
-//   currentStatus: string;
+  @Column({ name: 'is_verified' })
+  isVerified: boolean;
 
-//   @Column({ name: 'created_at' })
-//   createdAt: Date;
+  @Column({ name: 'current_status' })
+  currentStatus: string;
 
-//   @Column({ name: 'updated_at' })
-//   updatedAt: Date;
-// }
+  @Column({ name: 'created_at' })
+  createdAt: Date;
+
+  @Column({ name: 'updated_at' })
+  updatedAt: Date;
+}

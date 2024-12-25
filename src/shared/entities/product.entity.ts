@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Category } from './category.entity';
-import { Subcategory } from './subcategory.entity';
 
 @Entity({name: 'products'})
 export class Product {
@@ -8,41 +7,27 @@ export class Product {
   @PrimaryGeneratedColumn({ name: 'product_id' })
   productId: number;
 
-  @Column()
+  @Column({name:"category_id"})
+  categoryId: number;
+
+  @Column({name:"name"})
   name: string;
 
-  @Column()
+  @Column({name:"description"})
   description: string;
 
-  @Column()
-  specification: string;
-
-  @Column()
-  features: string;
-  
-  @Column({name:"model_number"})
-  modelNumber: string;
-  
   @Column({name: 'image_url'})
   imageUrl: string;
 
-  @Column({name: 'stock_quantity'})
-  stockQuantity: number;
-
-  @Column()
-  price: number;
+  @Column({name:"brand"})
+  brand: string;
+  
+  @Column({name:"country_of_origin"})
+  countryOfOrigin: string;
 
   @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
 
   @UpdateDateColumn({name: 'updated_at'})
   updatedAt: Date;
-
-  @ManyToOne(() => Category, (Category) => Category.products)
-  @JoinColumn({ name: 'category_id' })
-  category: Category;
-
-  @ManyToOne(() => Subcategory, (Subcategory) => Subcategory.products)
-  @JoinColumn({ name: 'subcategory_id' })
-  subcategory: Subcategory;
 }
