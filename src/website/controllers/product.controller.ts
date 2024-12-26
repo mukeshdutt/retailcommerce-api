@@ -5,7 +5,7 @@ import { ProductService } from '../services/product.service';
 import { sendSuccessResponse } from 'src/common/utils/response.util';
 import { ProductViewModel } from '../viewmodels/product.viewmodel';
 
-@Controller('product')
+@Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
@@ -33,15 +33,20 @@ export class ProductController {
     sendSuccessResponse(response, products);
   }
 
-  // Get products by category and subcategory
-  @Get("category/:categoryId/subcategory/:subcategoryId")
-  async getByCategorySubcategory(@Res() response: Response, @Param("categoryId") categoryid: number, @Param("subcategoryId") subcategoryid: number): Promise<void> {
-    const products = await this.productService.getProductByCategorySubcategory(categoryid, subcategoryid);
-
-    if(products.length === 0) {
-      sendSuccessResponse(response, [], 'No products found');
-      return;
-    }
-    sendSuccessResponse(response, products);
+  @Get("hot")
+  async hotProducts(@Res() response: Response): Promise<void> {
   }
+
+  @Get("category/:categoryid")
+  async productsByCategory(@Res() response: Response, @Param("categoryid") categoryId: number): Promise<void> {
+  }
+
+  @Get("best-selling")
+  async bestSellingProducts(@Res() response: Response): Promise<void> {
+  }
+
+  @Get("filter")
+  async productsByFilter(): Promise<void> {
+  }
+
 }

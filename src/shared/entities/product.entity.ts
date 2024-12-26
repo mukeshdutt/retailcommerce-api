@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Category } from './category.entity';
 
 @Entity({name: 'products'})
 export class Product {
@@ -24,6 +23,9 @@ export class Product {
   
   @Column({name:"country_of_origin"})
   countryOfOrigin: string;
+
+  @Column({name:"is_hot"})
+  isHot: boolean;
 
   @CreateDateColumn({name: 'created_at'})
   createdAt: Date;
