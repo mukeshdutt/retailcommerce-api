@@ -23,6 +23,7 @@ export class Cart {
   @Column({ name: 'updated_at' })
   updatedAt: Date;
 
+  // Relationships
   @ManyToOne(() => User, (user) => user.userId)
   user: User;
 

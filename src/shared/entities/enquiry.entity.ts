@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { EnquiryItem } from './enquiry-item.entity';
 
 @Entity('enquiries')
 export class Enquiry {
@@ -17,4 +18,9 @@ export class Enquiry {
 
     @UpdateDateColumn({name: 'updated_at'})
     updatedAt: Date;
+
+    // Relationships
+    @OneToMany(() => EnquiryItem, (enquiryItem) => enquiryItem.enquiry)
+    enquiryItems: EnquiryItem[];
+
 }

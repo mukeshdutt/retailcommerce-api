@@ -17,7 +17,6 @@ export class PotterWheelProduct {
     wheelSize: string;
 
     // Relationships
-    @OneToOne(() => Product)
-    @JoinColumn({ name: 'product_id' })
+    @OneToOne(() => Product, (product) => product.productId)
     product: Product;
 }

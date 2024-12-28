@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn, OneToOne, OneToMany } from 'typeorm';
+
+// Imported required entities
+import { Category } from './category.entity';
 import { ClayProduct } from './clay-product.entity';
 import { PotProduct } from './pot-product.entity';
 import { TerracottaProduct } from './terracotta-product.entity';
@@ -38,19 +41,18 @@ export class Product {
   updatedAt: Date;
 
   // Relationships
-  @OneToOne(() => ClayProduct)
-  @JoinColumn({name: 'product_id'})
+  @ManyToOne(() => Category, (category) => category.categoryId)
+  category: Category;
+
+  @OneToOne(() => ClayProduct, (clayProduct) => clayProduct.productId)
   clayProduct: ClayProduct;
 
-  @OneToOne(() => PotProduct)
-  @JoinColumn({name: 'product_id'})
+  @OneToOne(() => PotProduct, (potProduct) => potProduct.productId)
   potProduct: PotProduct;
 
-  @OneToOne(() => TerracottaProduct)
-  @JoinColumn({name: 'product_id'})
+  @OneToOne(() => TerracottaProduct, (terracottaProduct) => terracottaProduct.productId)
   terracottaProduct: TerracottaProduct;
 
-  @OneToOne(() => PotterWheelProduct)
-  @JoinColumn({name: 'product_id'})
+  @OneToOne(() => PotterWheelProduct, (potterWheelProduct) => potterWheelProduct.productId)
   potterWheelProduct: PotterWheelProduct;
 }

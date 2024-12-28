@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import { UserProfile } from './user-profile.entity';
 // import { Order } from './order.entity';
 
 @Entity('users')
@@ -39,4 +40,8 @@ export class User {
 
   @Column({ name: 'updated_at' })
   updatedAt: Date;
+
+  // Relationships
+  @OneToOne(() => UserProfile, (userProfile) => userProfile.userId)
+  userProfiles: UserProfile
 }

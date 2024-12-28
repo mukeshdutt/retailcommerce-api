@@ -1,4 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+// Required Dependencies    
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne } from 'typeorm';
+
+// Imported the User and Product entities
 import { User } from './user.entity';
 import { Product } from './product.entity';
 
@@ -19,4 +22,11 @@ export class Wishlist {
 
     @Column({name:"notes"})
     notes: string;
+
+    // Relationships
+    @OneToOne(() => User, (user) => user.userId)
+    user: User;
+
+    @ManyToOne(() => Product, (product) => product.productId)
+    product: Product
 }

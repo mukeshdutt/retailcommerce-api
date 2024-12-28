@@ -1,4 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+// Required Dependencies
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+
+// Imported required entities
+import { Product } from './product.entity';
+import { Enquiry } from './enquiry.entity';
 
 @Entity('enquiry_items')
 export class EnquiryItem {
@@ -14,4 +19,11 @@ export class EnquiryItem {
 
     @Column({name: 'quantity'})
     quantity: number;
+
+    // Relationships
+    @ManyToOne(() => Product, (product) => product.productId)
+    product: Product;
+
+    @ManyToOne(() => Enquiry, (enquiry) => enquiry.enquiryId)
+    enquiry: Enquiry;
 }

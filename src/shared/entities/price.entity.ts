@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Product } from './product.entity';
 
 @Entity("price")
 export class Price {
@@ -14,4 +15,8 @@ export class Price {
 
     @Column('decimal', { precision: 10, scale: 2, name: 'discount' })
     discount: number;
+
+    // Relationships
+    @OneToOne(() => Product, (product) => product.productId)
+    product: Product
 }

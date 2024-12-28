@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { User } from './user.entity';
 
 @Entity('user_profile')
 export class UserProfile {
@@ -20,4 +21,8 @@ export class UserProfile {
 
   @Column({ name: 'is_admin' })
   isAdmin: boolean;
+
+  // Relationships
+  @OneToOne(() => User, (user) => user.userId)
+  user: User;
 }
