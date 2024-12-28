@@ -12,6 +12,10 @@ import { PotterWheelProduct } from 'src/shared/entities/potter-wheel-product.ent
 import { Enquiry } from 'src/shared/entities/enquiry.entity';
 import { EnquiryItem } from 'src/shared/entities/enquiry-item.entity';
 import { Wishlist } from 'src/shared/entities/wishlist.entity';
+import { PotProduct } from 'src/shared/entities/pot-product.entity';
+import { Cart } from 'src/shared/entities/cart.entity';
+import { User } from 'src/shared/entities/user.entity';
+import { UserProfile } from 'src/shared/entities/user-profile.entity';
 
 // -- TypeORM configuration
 export const typeOrmConfig = (): TypeOrmModuleOptions => {
@@ -23,7 +27,7 @@ export const typeOrmConfig = (): TypeOrmModuleOptions => {
     username: configService.get<string>('DATABASE_USERNAME'),
     password: configService.get<string>('DATABASE_PASSWORD'),
     database: configService.get<string>('DATABASE_NAME'),
-    entities: [Category, Product, GalleryImage, ClayProduct, TerracottaProduct, PotterWheelProduct, Enquiry, EnquiryItem, Wishlist],
+    entities: [User, UserProfile, Category, Product, Cart, GalleryImage, ClayProduct, PotProduct, TerracottaProduct, PotterWheelProduct, Enquiry, EnquiryItem, Wishlist],
     synchronize: configService.get<boolean>('DATABASE_SYNCHRONIZE'),
     logging: ['query', 'error'],
     retryAttempts: 2,

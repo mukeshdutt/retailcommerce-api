@@ -1,32 +1,25 @@
+// Imported required dependencies
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from 'src/shared/entities/product.entity';
-import { Repository } from 'typeorm';
+import { Any, Repository } from 'typeorm';
 import { Equal } from 'typeorm';
+
+// -- Entities & ViewModels
+import { Product } from 'src/shared/entities/product.entity';
 import { ProductViewModel } from '../viewmodels/product.viewmodel';
 
+// Service class
 export class ProductService {
   
   constructor(@InjectRepository(Product) private readonly productRepository: Repository<Product>) {}
   
-  async getProducts(): Promise<ProductViewModel[]> {
+  async getProducts(): Promise<any> {
     const products = await this.productRepository.find({relations: ['category', 'subcategory']});
-    return products.map(product => new ProductViewModel(
-      product.productId,
-      product.name,
-      product.description,
-      product.specification,
-      product.features,
-      product.modelNumber,
-      product.price,
-      product.imageUrl,
-      product.category.categoryId,
-      product.subcategory.subcategoryId,
-    ));
+    return Any
   }
   
   async getProductByCategorySubcategory(categoryId: number, subcategoryId: number): Promise<Product[]> {
     return this.productRepository.find({
-      where: { category: Equal(categoryId), subcategory: Equal(subcategoryId) },
+      where: { category: Equal(categoryId) },
     });
   }
 

@@ -25,6 +25,7 @@ export class PotProduct {
     @Column({ name: 'mount_type' })
     mountType: string;
 
+    // Relationships
     @OneToOne(() => Product, (product) => product.productId)
     product: Product;
 }
