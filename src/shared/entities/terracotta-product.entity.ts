@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
+import { Product } from './product.entity';
 
 @Entity({ name: 'terracotta_products' })
 export class TerracottaProduct {
@@ -38,4 +39,9 @@ export class TerracottaProduct {
 
     @Column({ name: 'usage_application' })
     usageApplication: string;
+
+    // Relationships
+    @OneToOne(() => Product)
+    @JoinColumn({ name: 'product_id' })
+    product: Product;
 }

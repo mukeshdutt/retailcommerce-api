@@ -13,6 +13,7 @@ import { Enquiry } from 'src/shared/entities/enquiry.entity';
 import { EnquiryItem } from 'src/shared/entities/enquiry-item.entity';
 import { Wishlist } from 'src/shared/entities/wishlist.entity';
 
+// -- TypeORM configuration
 export const typeOrmConfig = (): TypeOrmModuleOptions => {
   const configService = new ConfigService();
   const config: TypeOrmModuleOptions = {
@@ -25,6 +26,7 @@ export const typeOrmConfig = (): TypeOrmModuleOptions => {
     entities: [Category, Product, GalleryImage, ClayProduct, TerracottaProduct, PotterWheelProduct, Enquiry, EnquiryItem, Wishlist],
     synchronize: configService.get<boolean>('DATABASE_SYNCHRONIZE'),
     logging: ['query', 'error'],
+    retryAttempts: 2,
   };
   return config;
 };
