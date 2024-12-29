@@ -8,17 +8,6 @@ import { typeOrmConfig } from './common/config/typeorm.config';
 import { WebsiteModule } from './website/website.module';
 import { ConfigModule } from '@nestjs/config';
 
-// // -- Entities
-// import { Category } from 'src/shared/entities/category.entity';
-// import { Product } from 'src/shared/entities/product.entity';
-// import { GalleryImage } from 'src/shared/entities/gallery-image.entity';
-// import { ClayProduct } from 'src/shared/entities/clay-product.entity';
-// import { TerracottaProduct } from 'src/shared/entities/terracotta-product.entity';
-// import { PotterWheelProduct } from 'src/shared/entities/potter-wheel-product.entity';
-// import { Enquiry } from 'src/shared/entities/enquiry.entity';
-// import { EnquiryItem } from 'src/shared/entities/enquiry-item.entity';
-// import { Wishlist } from 'src/shared/entities/wishlist.entity';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,7 +16,6 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot(typeOrmConfig()),
-    // TypeOrmModule.forFeature([Category, Product, GalleryImage, ClayProduct, TerracottaProduct, PotterWheelProduct, Enquiry, EnquiryItem, Wishlist]),
     WinstonModule.forRoot(winstonConfig),
     WebsiteModule,
   ],

@@ -2,17 +2,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// -- Services
-import { CategoryService } from './services/category.service';
-import { ProductService } from './services/product.service';
-import { WebsiteService } from './services/website.service';
-import { CartService } from './services/cart.service';
-
 // -- Controllers
 import { CategoryController } from './controllers/category.controller';
 import { ProductController } from './controllers/product.controller';
 import { WebsiteController } from './controllers/website.controller';
 import { CartController } from './controllers/cart.controller';
+
+// -- Services
+import { CategoryService } from './services/category.service';
+import { ProductService } from './services/product.service';
+import { WebsiteService } from './services/website.service';
+import { CartService } from './services/cart.service';
 
 // ---- Entities
 import { Category } from 'src/shared/entities/category.entity';
