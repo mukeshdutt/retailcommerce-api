@@ -1,4 +1,4 @@
-export class ProductViewModel {
+export class TerracottaProductViewModel {
     id: number;
     name: string;
     description: string;
@@ -16,5 +16,5 @@ export class ProductViewModel {
         this.brand = brand;
         this.countryOfOrigin = countryOfOrigin;
         this.categoryId = categoryId;
-    }
   }
+}

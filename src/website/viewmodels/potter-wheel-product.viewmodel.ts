@@ -1,4 +1,4 @@
-export class ProductViewModel {
+export class PotterWheelProductViewModel {
     id: number;
     name: string;
     description: string;

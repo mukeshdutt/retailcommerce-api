@@ -1,4 +1,4 @@
-export class ProductViewModel {
+export class ClayProductViewModel {
     id: number;
     name: string;
     description: string;
@@ -15,6 +15,6 @@ export class ProductViewModel {
         this.imageUrl = imageUrl;
         this.brand = brand;
         this.countryOfOrigin = countryOfOrigin;
-        this.categoryId = categoryId;
+        this.categoryId = categoryId
     }
-  }
+}

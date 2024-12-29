@@ -4,7 +4,7 @@ import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateCol
 export class GalleryImage {
     
     @PrimaryGeneratedColumn({name: 'image_id'})
-    image_id: number;
+    imageId: number;
 
     @Column({ name:"title" })
     title: string;
@@ -13,11 +13,14 @@ export class GalleryImage {
     description: string;
 
     @Column({ name:"image_url" })
-    image_url: string;
+    imageUrl: string;
+
+    @Column({ name:"is_active", default: true })
+    isActive: boolean;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
-    created_at: Date;
+    createdAt: Date;
 
     @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
-    updated_at: Date;
+    updatedAt: Date;
 }

@@ -1,7 +1,8 @@
 import { Response} from "express";
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
 import { CategoryService } from '../services/category.service';
-import { sendSuccessResponse } from 'src/common/utils/response.util';
+import { sendErrorResponse, sendSuccessResponse } from 'src/common/utils/response.util';
+import { ErrorCodes } from "src/common/constants/error-codes";
 
 @Controller('category')
 export class CategoryController {
@@ -13,8 +14,7 @@ export class CategoryController {
       const categories = await this.categoryService.allCategories();
 
       if(categories.length === 0) {
-          sendSuccessResponse(response, [], 'No categories found');
-          return;
+          return sendErrorResponse(response, HttpStatus.NOT_FOUND, ErrorCodes.NO_CATEGORY);
       }
       sendSuccessResponse(response, categories);    
   }

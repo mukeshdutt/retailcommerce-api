@@ -1,4 +1,4 @@
-export class ProductViewModel {
+export class ProductPriceViewModel {
     id: number;
     name: string;
     description: string;
@@ -17,4 +17,4 @@ export class ProductViewModel {
         this.countryOfOrigin = countryOfOrigin;
         this.categoryId = categoryId;
     }
-  }
+}
