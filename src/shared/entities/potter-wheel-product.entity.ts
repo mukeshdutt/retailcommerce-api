@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, OneToOne } from 'typeorm';
 import { Product } from "./product.entity"
 
-@Entity('potter_wheel_product')
+@Entity('potter_wheel_products')
 export class PotterWheelProduct {
 
     @PrimaryGeneratedColumn({name:"product_id"})

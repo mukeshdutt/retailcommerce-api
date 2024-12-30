@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
@@ -12,11 +13,13 @@ export class WebsiteService {
     constructor(
         @InjectRepository(GalleryImage)
         private readonly websiteRepository: Repository<GalleryImage>,
+        private readonly configService: ConfigService
     ) {}
 
     // Get all gallery images
     async getGalleryImages(): Promise<GalleryImageViewModel[]> {
         const images = await this.websiteRepository.find({where: {isActive: true}});
-        return images.map((image) => new GalleryImageViewModel(image.imageId, image.title, image.description, image.imageUrl));
+        return images.map((image) => 
+            new GalleryImageViewModel(image.imageId, image.title, image.description, this.configService.get<string>("GALLERY_IMAGE_BASE_URL") + image.imageUrl));
     }
 }
