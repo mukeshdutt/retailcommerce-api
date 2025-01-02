@@ -9,7 +9,7 @@ export class Category {
   categoryId: number;
 
   @Column({name:"parent_id"})
-  parentId: string;
+  parentId: number;
 
   @Column({name:"category_name"})
   name: string;

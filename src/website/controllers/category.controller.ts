@@ -9,13 +9,22 @@ export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
   // Get all categories
-  @Get()
-  async getAll(@Res() response: Response): Promise<void> {
-      const categories = await this.categoryService.allCategories();
-
+  @Get("parent")
+  async getParentCategories(@Res() response: Response): Promise<void> {
+      const categories = await this.categoryService.parentCategories();
       if(categories.length === 0) {
           return sendErrorResponse(response, HttpStatus.NOT_FOUND, ErrorCodes.NO_CATEGORY);
       }
       sendSuccessResponse(response, categories);    
   }
+
+    // Get all categories
+    @Get()
+    async getAllCategories(@Res() response: Response): Promise<void> {
+        const categories = await this.categoryService.allCategories();
+        if(categories.length === 0) {
+            return sendErrorResponse(response, HttpStatus.NOT_FOUND, ErrorCodes.NO_CATEGORY);
+        }
+        sendSuccessResponse(response, categories);    
+    }
 }

@@ -16,8 +16,13 @@ export class CategoryService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
+  async parentCategories(): Promise<CategoryViewModel[]> {
+    const categories = await this.categoryRepository.find({where: {isActive: true, parentId: 0}});
+    return categories.map(category => new CategoryViewModel(category.categoryId, category.name, category.description, category.imageUrl));
+  }
+
   async allCategories(): Promise<CategoryViewModel[]> {
-    const categories = await this.categoryRepository.find({});
+    const categories = await this.categoryRepository.find({where: {isActive: true}});
     return categories.map(category => new CategoryViewModel(category.categoryId, category.name, category.description, category.imageUrl));
   }
 }
