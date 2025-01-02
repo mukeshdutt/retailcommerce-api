@@ -28,7 +28,7 @@ export const typeOrmConfig = (): TypeOrmModuleOptions => {
     password: configService.get<string>('DATABASE_PASSWORD'),
     database: configService.get<string>('DATABASE_NAME'),
     entities: [User, UserProfile, Category, Product, Cart, GalleryImage, ClayProduct, PotProduct, TerracottaProduct, PotterWheelProduct, Enquiry, EnquiryItem, Wishlist],
-    synchronize: configService.get<boolean>('DATABASE_SYNCHRONIZE'),
+    synchronize: false,
     retryAttempts: configService.get<number>("DATABASE_MAXIMUM_RETRY"),
     logging: ['query', 'error'],
   };
