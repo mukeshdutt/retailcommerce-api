@@ -18,5 +18,6 @@ export class PotterWheelProduct {
 
     // Relationships
     @OneToOne(() => Product, (product) => product.productId)
+    @JoinColumn({ name: 'product_id'})
     product: Product;
 }

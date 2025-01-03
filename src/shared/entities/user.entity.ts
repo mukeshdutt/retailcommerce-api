@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 import { UserProfile } from './user-profile.entity';
 
 @Entity('users')
@@ -42,5 +42,6 @@ export class User {
 
   // Relationships
   @OneToOne(() => UserProfile, (userProfile) => userProfile.userId)
+  @JoinColumn({ name: 'user_id' })
   userProfiles: UserProfile
 }

@@ -41,18 +41,23 @@ export class Product {
   updatedAt: Date;
 
   // Relationships
-  @ManyToOne(() => Category, (category) => category.categoryId)
+  @ManyToOne(() => Category, (category) => category.products)
+  @JoinColumn({name: 'category_id'})
   category: Category;
 
   @OneToOne(() => ClayProduct, (clayProduct) => clayProduct.productId)
+  @JoinColumn({name: 'product_id'})
   clayProduct: ClayProduct;
 
   @OneToOne(() => PotProduct, (potProduct) => potProduct.productId)
+  @JoinColumn({name: 'product_id'})
   potProduct: PotProduct;
 
   @OneToOne(() => TerracottaProduct, (terracottaProduct) => terracottaProduct.productId)
+  @JoinColumn({name: 'product_id'})
   terracottaProduct: TerracottaProduct;
 
   @OneToOne(() => PotterWheelProduct, (potterWheelProduct) => potterWheelProduct.productId)
+  @JoinColumn({name: 'product_id'})
   potterWheelProduct: PotterWheelProduct;
 }

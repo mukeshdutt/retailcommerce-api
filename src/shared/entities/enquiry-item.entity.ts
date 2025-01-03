@@ -1,5 +1,5 @@
 // Required Dependencies
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 
 // Imported required entities
 import { Product } from './product.entity';
@@ -22,8 +22,10 @@ export class EnquiryItem {
 
     // Relationships
     @ManyToOne(() => Product, (product) => product.productId)
+    @JoinColumn({name: 'product_id'})
     product: Product;
 
     @ManyToOne(() => Enquiry, (enquiry) => enquiry.enquiryId)
+    @JoinColumn({name: 'enquiry_id'})
     enquiry: Enquiry;
 }

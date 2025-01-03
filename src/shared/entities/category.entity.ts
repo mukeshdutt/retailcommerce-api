@@ -28,4 +28,8 @@ export class Category {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  // Relationships
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }

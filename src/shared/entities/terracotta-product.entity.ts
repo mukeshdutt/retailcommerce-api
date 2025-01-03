@@ -42,5 +42,6 @@ export class TerracottaProduct {
 
     // Relationships
     @OneToOne(() => Product, (product) => product.productId)
+    @JoinColumn({ name: 'product_id' })
     product: Product;
 }

@@ -20,6 +20,6 @@ export class WebsiteService {
     async getGalleryImages(): Promise<GalleryImageViewModel[]> {
         const images = await this.websiteRepository.find({where: {isActive: true}});
         return images.map((image) => 
-            new GalleryImageViewModel(image.imageId, image.title, image.description, this.configService.get<string>("GALLERY_IMAGE_BASE_URL") + image.imageUrl));
+            new GalleryImageViewModel(image.imageId, image.title, image.description, this.configService.get<string>("IMAGE_GALLERY_BASE_URL") + image.imageUrl));
     }
 }

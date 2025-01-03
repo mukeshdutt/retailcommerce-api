@@ -1,7 +1,8 @@
 // Imported required dependencies
 import { InjectRepository } from '@nestjs/typeorm';
-import { Any, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Equal } from 'typeorm';
+import { ConfigService } from '@nestjs/config';
 
 // -- Entities & ViewModels
 import { Product } from 'src/shared/entities/product.entity';
@@ -9,7 +10,11 @@ import { ProductViewModel } from '../viewmodels/product.viewmodel';
 
 // Service class
 export class ProductService {
-  constructor(@InjectRepository(Product) private readonly productRepository: Repository<Product>) {}
+  constructor(
+    @InjectRepository(Product) 
+    private readonly productRepository: Repository<Product>, 
+    private readonly configService: ConfigService
+  ) {}
   
   // Get all hot products
   async getHotProducts(): Promise<ProductViewModel[]> {
@@ -19,7 +24,7 @@ export class ProductService {
         product.productId,
         product.name,
         product.description,
-        product.imageUrl,
+        this.configService.get<string>("IMAGE_PRODUCT_BASE_URL") + product.imageUrl,
         product.brand,
         product.countryOfOrigin,
         product.categoryId
@@ -35,7 +40,7 @@ export class ProductService {
         product.productId,
         product.name,
         product.description,
-        product.imageUrl,
+        this.configService.get<string>("IMAGE_PRODUCT_BASE_URL") + product.imageUrl,
         product.brand,
         product.countryOfOrigin,
         product.categoryId
